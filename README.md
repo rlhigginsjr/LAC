@@ -1,6 +1,10 @@
 # MCOC Legislative Action Center
 
-A web-based advocacy tool for the **Michigan Council of Chapters, Military Officers Association of America (MCOC-MOAA)** that allows members to contact their elected officials on priority legislation — directly from their own email client, with no backend infrastructure required.
+A web-based advocacy tool that makes it simple for MOAA members to contact their elected officials on priority state and federal legislation — directly from their own email client, with no backend infrastructure, no subscriptions, and no technical expertise required by members.
+
+**Live demo:** [rlhigginsjr.github.io/LAC](https://rlhigginsjr.github.io/LAC/)
+
+Developed by the SE Michigan Chapter, MOAA (SEMIMOAA)** and offered freely to all state MOAA Councils.
 
 ---
 
@@ -149,7 +153,7 @@ Update, add, or remove entries as committee membership changes.
 
 ## Maintained By
 
-Michigan Council of Chapters, MOAA  
-Website: [moaamcoc.com](https://www.moaamcoc.com)
+SE Michigan Chapter,  MOAA  
+Website: [semimoaa.com](https://www.semimoaa.com)
 
 For questions about the tool or to report an issue, open a GitHub Issue in this repository.
