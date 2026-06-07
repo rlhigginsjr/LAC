@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Legislative Action Center — Michigan Council of Chapters, MOAA</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy: #1a2d4f;
+  --navy-mid: #243d6b;
+  --gold: #b8912a;
+  --gold-light: #f0d896;
+  --gold-pale: #fdf8ec;
+  --red: #8b1a1a;
+  --green: #1a5c3a;
+  --green-light: #e8f5ee;
+  --blue-pale: #eef3fa;
+  --gray-50: #f8f8f7;
+  --gray-100: #eeede9;
+  --gray-300: #c8c6bf;
+  --gray-500: #8a8880;
+  --gray-700: #4a4845;
+  --text: #1e1d1b;
+  --radius: 6px;
+  --radius-lg: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  background: #fff;
+  line-height: 1.6;
+}
+.page { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* Header */
+.site-header {
+  border-bottom: 3px solid var(--navy);
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header-flag {
+  width: 48px; height: 48px;
+  background: var(--navy);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.header-flag svg { width: 28px; height: 28px; fill: var(--gold-light); }
+.header-org { font-family: 'Merriweather', serif; font-size: 11px; font-weight: 700; color: var(--navy); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.4; }
+.header-tool { font-size: 22px; font-family: 'Merriweather', serif; font-weight: 700; color: var(--navy); margin-top: 0.25rem; }
+
+/* Issue banner */
+.issue-banner {
+  background: var(--navy);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+}
+.issue-banner h2 {
+  font-family: 'Merriweather', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+.issue-banner p { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+.bill-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.75rem; }
+.bill-tag-pill {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--gold-light);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.bill-tag-pill:hover { background: rgba(255,255,255,0.2); }
+
+/* Resources row */
+.resources-row {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+.resource-link {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 600; color: var(--navy);
+  text-decoration: none;
+  border: 1.5px solid var(--navy);
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  transition: background 0.15s, color 0.15s;
+}
+.resource-link:hover { background: var(--navy); color: #fff; }
+.resource-link svg { width: 15px; height: 15px; }
+
+/* Steps */
+.steps-track {
+  display: flex; align-items: center; gap: 0;
+  margin-bottom: 1.75rem;
+}
+.step-dot {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: var(--gray-500);
+}
+.step-dot.active { color: var(--navy); }
+.step-dot.done { color: var(--green); }
+.step-circle {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid var(--gray-300);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--gray-500);
+  flex-shrink: 0;
+}
+.step-dot.active .step-circle { border-color: var(--navy); color: var(--navy); background: var(--blue-pale); }
+.step-dot.done .step-circle { border-color: var(--green); background: var(--green-light); color: var(--green); }
+.step-line { flex: 1; height: 2px; background: var(--gray-100); margin: 0 8px; }
+
+/* Card */
+.card {
+  background: #fff;
+  border: 1.5px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.card-title {
+  font-family: 'Merriweather', serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1.5px solid var(--gray-100);
+}
+
+/* Form */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group.full { grid-column: 1 / -1; }
+label { font-size: 13px; font-weight: 600; color: var(--gray-700); letter-spacing: 0.01em; }
+input, select, textarea {
+  width: 100%; padding: 9px 12px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-size: 14px; font-family: 'Source Sans 3', sans-serif;
+  color: var(--text);
+  background: #fff;
+  transition: border-color 0.15s;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(26,45,79,0.08);
+}
+textarea { resize: vertical; line-height: 1.65; }
+
+/* Bills grid */
+.bills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.bill-card {
+  border: 1.5px solid var(--gray-100);
+  border-radius: var(--radius);
+  padding: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  background: var(--gray-50);
+}
+.bill-card:hover { border-color: var(--navy); background: var(--blue-pale); }
+.bill-card.selected { border-color: var(--navy); background: var(--blue-pale); border-width: 2px; }
+.bill-card.primary-flag { position: relative; }
+.priority-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 20px;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.bill-code { font-family: 'Merriweather', serif; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.bill-short { font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 5px; }
+.bill-desc { font-size: 12px; color: var(--gray-500); line-height: 1.5; }
+.bill-link { font-size: 11px; color: var(--navy); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 3px; margin-top: 6px; }
+.bill-link:hover { text-decoration: underline; }
+
+/* Filter row */
+.filter-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.filter-btn {
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--gray-300);
+  background: #fff;
+  color: var(--gray-700);
+  font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: 'Source Sans 3', sans-serif;
+  transition: all 0.15s;
+}
+.filter-btn.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+.filter-btn:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
+
+/* Recipients */
+.recipients-header { font-size: 12px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+.leg-send-btn {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--gray-100);
+  border-radius: var(--radius);
+  background: var(--gray-50);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Source Sans 3', sans-serif;
+  transition: background 0.15s, border-color 0.15s;
+  margin-bottom: 8px;
+  width: 100%;
+}
+.leg-send-btn:hover { background: var(--blue-pale); border-color: var(--navy); }
+.leg-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--navy); color: var(--gold-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; flex-shrink: 0;
+  font-family: 'Merriweather', serif;
+}
+.leg-name { font-weight: 600; font-size: 14px; color: var(--navy); }
+.leg-meta { font-size: 12px; color: var(--gray-500); margin-top: 1px; }
+.leg-arrow { margin-left: auto; color: var(--gray-300); flex-shrink: 0; }
+.opened-badge {
+  background: var(--green-light);
+  color: var(--green);
+  font-size: 11px; font-weight: 700;
+  padding: 2px 10px; border-radius: 20px;
+  margin-left: auto; flex-shrink: 0;
+  letter-spacing: 0.03em;
+}
+
+/* Buttons */
+.btn-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 1.25rem; }
+.btn {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: 'Source Sans 3', sans-serif;
+  display: inline-flex; align-items: center; gap: 7px;
+  transition: all 0.15s;
+  border: 1.5px solid var(--gray-300);
+  background: #fff; color: var(--text);
+}
+.btn:hover { background: var(--gray-50); border-color: var(--gray-500); }
+.btn-primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.btn-primary:hover { background: var(--navy-mid); border-color: var(--navy-mid); }
+.btn-copy { background: #fff; border-color: var(--gray-300); color: var(--gray-700); }
+
+/* Info notice */
+.notice {
+  background: var(--blue-pale);
+  border-left: 3px solid var(--navy);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--navy-mid);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+.phone-script {
+  background: var(--gold-pale);
+  border: 1.5px solid var(--gold-light);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-top: 1.25rem;
+}
+.phone-script-title { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.phone-script p { font-size: 13px; color: var(--gray-700); line-height: 1.65; }
+
+.err { font-size: 13px; color: var(--red); margin-top: 8px; }
+.hidden { display: none; }
+
+/* Footer note */
+.footer-note { font-size: 12px; color: var(--gray-500); margin-top: 10px; line-height: 1.6; }
+
+@media (max-width: 540px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .bills-grid { grid-template-columns: 1fr; }
+  .steps-track .step-label { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="site-header">
+    <div class="header-flag">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 21V5l9-2 9 2v16H3zM12 3v18M3 9h18M3 15h18"/>
+      </svg>
+    </div>
+    <div>
+      <div class="header-org">Michigan Council of Chapters · Military Officers Association of America</div>
+      <div class="header-tool">Legislative Action Center</div>
+    </div>
+  </div>
+
+  <!-- Issue Banner -->
+  <div class="issue-banner">
+    <h2>Current Priority: Aligning Veteran Recognition for NOAA &amp; USPHS Officers</h2>
+    <p>Michigan law does not recognize commissioned officers of the U.S. Public Health Service (USPHS) and National Oceanic and Atmospheric Administration (NOAA) as veterans — even though federal law (38 USC) does. These four House bills, referred to the House Committee on Government Operations, would correct that gap.</p>
+    <div class="bill-tags">
+      <a class="bill-tag-pill" href="https://www.legislature.mi.gov/documents/2025-2026/billintroduced/House/pdf/2025-HIB-5262.pdf" target="_blank">HB 5262</a>
+      <a class="bill-tag-pill" href="https://www.legislature.mi.gov/documents/2025-2026/billintroduced/House/pdf/2025-HIB-5278.pdf" target="_blank">HB 5278</a>
+      <a class="bill-tag-pill" href="https://www.legislature.mi.gov/documents/2025-2026/billintroduced/House/pdf/2025-HIB-5279.pdf" target="_blank">HB 5279</a>
+      <a class="bill-tag-pill" href="https://archive.legislature.mi.gov/documents/2025-2026/billintroduced/House/pdf/2025-HIB-5280.pdf" target="_blank">HB 5280 ★ Priority</a>
+    </div>
+  </div>
+
+  <!-- Resources -->
+  <div class="resources-row">
+    <a class="resource-link" href="https://www.moaamcoc.com/uploads/1/4/8/4/148483887/hb_5280_battle_card_r2.pdf" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      HB 5280 Battle Card
+    </a>
+    <a class="resource-link" href="https://www.moaamcoc.com/uploads/1/4/8/4/148483887/michigan_house_bill_5280_-_one-pager.pdf" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      HB 5280 One-Pager
+    </a>
+    <a class="resource-link" href="https://www.moaamcoc.com/legislation.html" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Full Issue Background
+    </a>
+  </div>
+
+  <!-- Step tracker -->
+  <div class="steps-track">
+    <div class="step-dot active" id="sdot1">
+      <div class="step-circle">1</div>
+      <span class="step-label">Your info</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step-dot" id="sdot2">
+      <div class="step-circle">2</div>
+      <span class="step-label">Select bill</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step-dot" id="sdot3">
+      <div class="step-circle">3</div>
+      <span class="step-label">Send email</span>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div id="step1">
+    <div class="card">
+      <div class="card-title">Step 1 — Your information</div>
+      <div class="form-grid">
+        <div class="form-group"><label for="fname">First name</label><input id="fname" type="text" placeholder="Jane"/></div>
+        <div class="form-group"><label for="lname">Last name</label><input id="lname" type="text" placeholder="Smith"/></div>
+        <div class="form-group full"><label for="addr">Street address</label><input id="addr" type="text" placeholder="123 Main Street"/></div>
+        <div class="form-group"><label for="city">City</label><input id="city" type="text" placeholder="Lansing"/></div>
+        <div class="form-group"><label for="zip">ZIP code</label><input id="zip" type="text" placeholder="48933" maxlength="5"/></div>
+        <div class="form-group full"><label for="email">Your email address</label><input id="email" type="email" placeholder="jane.smith@email.com"/></div>
+        <div class="form-group full"><label for="chapter">MOAA Chapter / Unit</label><input id="chapter" type="text" placeholder="e.g. Lansing Chapter, MOAA"/></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goStep2()">Continue to bill selection ›</button>
+      </div>
+      <div id="s1err" class="err"></div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div id="step2" class="hidden">
+    <div class="card">
+      <div class="card-title">Step 2 — Select a bill to support</div>
+      <div class="notice">
+        <strong>Our primary target is HB 5280</strong> — it has the least opposition and does not rely on redefining "veteran." The broader bills (5262, 5278, 5279) address related gaps but face more resistance. We recommend contacting the committee on HB 5280 first.
+      </div>
+      <div class="bills-grid" id="bills-grid"></div>
+      <div class="btn-row">
+        <button class="btn" onclick="goStep(1)">‹ Back</button>
+        <button class="btn btn-primary" onclick="goStep3()">Compose email ›</button>
+      </div>
+      <div id="s2err" class="err"></div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div id="step3" class="hidden">
+    <div class="card">
+      <div class="card-title">Step 3 — Review and send your email</div>
+
+      <div class="notice">
+        Your email client will open with this message pre-filled. Each committee member gets their own button. Edit the message freely before clicking send in your email program.
+      </div>
+
+      <div class="form-grid" style="margin-bottom:1.25rem">
+        <div class="form-group full"><label for="esubj">Subject line (editable)</label><input id="esubj" type="text"/></div>
+        <div class="form-group full"><label for="ebody">Message body (editable)</label><textarea id="ebody" rows="15"></textarea></div>
+      </div>
+
+      <div class="recipients-header">House Committee on Government Operations — send to each member</div>
+      <div id="leg-buttons"></div>
+
+      <div class="btn-row">
+        <button class="btn" onclick="goStep(2)">‹ Back</button>
+        <button class="btn btn-copy" id="copybtn" onclick="copyMsg()">Copy message</button>
+        <button class="btn" onclick="refreshLinks()">↺ Refresh links</button>
+      </div>
+      <div class="footer-note">After editing the subject or body above, click <strong>Refresh links</strong> to update all the email buttons below before opening your email client.</div>
+    </div>
+
+    <!-- Phone script -->
+    <div class="phone-script">
+      <div class="phone-script-title">📞 Prefer to call? Use this script</div>
+      <p id="phone-script-text">"Hello, my name is [Your Name]. I'm a constituent of Representative [Name] and a member of the [Chapter], Military Officers Association of America. I'm calling to ask for your support in moving House Bill 5280 forward in committee. It's a small, common-sense fix to ensure equal treatment for all uniformed service veterans."</p>
+    </div>
+  </div>
+
+</div><!-- end .page -->
+
+<script>
+const BILLS = [
+  {
+    id: 1, code: 'HB 5280', priority: true,
+    short: 'Income Tax Act — retirement pay equity',
+    desc: 'Amends the Income Tax Act of 1967 to extend Michigan retirement tax fairness to active duty, retired officers, and surviving spouses of USPHS and NOAA Commissioned Corps. Primary advocacy target — least opposition.',
+    url: 'https://archive.legislature.mi.gov/documents/2025-2026/billintroduced/House/pdf/2025-HIB-5280.pdf',
+    subject: 'Support for HB 5280',
+    body: `Dear Representative [LAST_NAME],
+
+I am writing to respectfully request your support for a revised version of HB 5280, which would extend Michigan retirement tax fairness to active duty, retired officers, and surviving spouses of the United States Public Health Service (USPHS) and National Oceanic and Atmospheric Administration (NOAA) Commissioned Corps.
+
+The revision to the current version of the bill would amend section 30(1)(e)(iv) to read: "(iv) Beginning January 1, 2026, compensation, including retirement or pension benefits, received for services as a commissioned officer in the National Oceanic and Atmospheric Administration Commissioned Officer Corps or the United States Public Health Service Commissioned Corps."
+
+These individuals are members of the uniformed services of the United States and are recognized as veterans by the Department of Veterans Affairs. HB 5280 is a narrow, fiscally responsible measure that simply ensures equal treatment among federally recognized uniformed services retirees.
+
+The bill affects only a small number of Michigan residents and carries minimal fiscal impact, while correcting an inconsistency in current law. Importantly, the legislation does not create a new category of veterans or expand eligibility beyond those already recognized under federal standards.
+
+This legislation is part of a broader effort to align Michigan law with existing federal recognition and ensure fair and consistent treatment for all who have served in qualifying uniformed service roles.
+
+I respectfully ask that you support HB 5280 and assist in advancing the bill through the House Government Operations Committee.
+
+Thank you for your consideration and for your service to the people of Michigan.
+
+Respectfully,
+[FULL_NAME]
+[CITY], Michigan
+Member, [CHAPTER]`
+  },
+  {
+    id: 2, code: 'HB 5262', priority: false,
+    short: 'Uniformity of Service Dates Act',
+    desc: 'Amends Act 190 of 1965 to include commissioned officers of NOAA and USPHS as a class of veterans as defined in Title 38 USC.',
+    url: 'https://www.legislature.mi.gov/documents/2025-2026/billintroduced/House/pdf/2025-HIB-5262.pdf',
+    subject: 'Support for HB 5262 — Veteran Recognition for NOAA & USPHS Officers',
+    body: `Dear Representative [LAST_NAME],
+
+I am writing to urge your support for HB 5262, which would amend Act 190 of 1965 (Uniformity of Service Dates) to include commissioned officers of the National Oceanic and Atmospheric Administration (NOAA) and the U.S. Public Health Service (USPHS) as a class of veterans, consistent with the federal definition under Title 38 of the United States Code.
+
+Under federal law, NOAA and USPHS commissioned officers are recognized as veterans by the Department of Veterans Affairs. Michigan law currently fails to extend this same recognition, creating an unjust gap in benefits and honors for individuals who have served this nation in a uniformed capacity.
+
+HB 5262 is a straightforward alignment of Michigan law with existing federal standards — nothing more. I respectfully ask for your support in advancing this bill through committee.
+
+Thank you for your service to the people of Michigan.
+
+Respectfully,
+[FULL_NAME]
+[CITY], Michigan
+Member, [CHAPTER]`
+  },
+  {
+    id: 3, code: 'HB 5278', priority: false,
+    short: 'State Personal Identification Card Act',
+    desc: 'Amends Act 222 of 1972 to extend veteran designation on state ID cards to NOAA and USPHS commissioned officers.',
+    url: 'https://www.legislature.mi.gov/documents/2025-2026/billintroduced/House/pdf/2025-HIB-5278.pdf',
+    subject: 'Support for HB 5278 — Veteran ID Recognition for NOAA & USPHS Officers',
+    body: `Dear Representative [LAST_NAME],
+
+I am writing to ask for your support of HB 5278, which would amend Act 222 of 1972 (State Personal Identification Card Act) to extend the veteran designation on Michigan state identification cards to commissioned officers of the National Oceanic and Atmospheric Administration (NOAA) and the U.S. Public Health Service (USPHS).
+
+These uniformed service members are recognized as veterans under federal law (38 USC) but are currently excluded from this recognition on Michigan state IDs. This small change would mean a great deal to the men and women who served in these federal uniformed services and now call Michigan home.
+
+I respectfully request your support in moving HB 5278 forward in the House Government Operations Committee.
+
+Thank you for your consideration.
+
+Respectfully,
+[FULL_NAME]
+[CITY], Michigan
+Member, [CHAPTER]`
+  },
+  {
+    id: 4, code: 'HB 5279', priority: false,
+    short: 'Michigan Vehicle Code',
+    desc: 'Amends Act 300 of 1949 to extend veteran designation on Michigan driver\'s licenses to NOAA and USPHS commissioned officers.',
+    url: 'https://www.legislature.mi.gov/documents/2025-2026/billintroduced/House/pdf/2025-HIB-5279.pdf',
+    subject: 'Support for HB 5279 — Veteran Driver\'s License Recognition for NOAA & USPHS Officers',
+    body: `Dear Representative [LAST_NAME],
+
+I am writing to request your support for HB 5279, which would amend Act 300 of 1949 (Michigan Vehicle Code) to extend the veteran designation on Michigan driver's licenses to commissioned officers of NOAA and the USPHS.
+
+These federally recognized uniformed service veterans currently cannot receive the veteran designation on their Michigan driver's license — an inconsistency with federal law that this bill would correct. The change carries no meaningful fiscal impact and simply provides fair, equal recognition to all who have served.
+
+I ask that you support HB 5279 and help advance it through the House Government Operations Committee.
+
+Thank you for your service to Michigan.
+
+Respectfully,
+[FULL_NAME]
+[CITY], Michigan
+Member, [CHAPTER]`
+  }
+];
+
+const LEGISLATORS = [
+  { name: 'Brian BeGole',   title: 'Chair · Republican · District 71',         salutation: 'Representative', email: 'bbeGole@house.mi.gov',          phone: '(517) 373-0853' },
+  { name: 'Mike Harris',    title: 'Majority Vice Chair · Republican · District 52', salutation: 'Representative', email: 'MikeHarris@house.mi.gov',  phone: '(517) 373-0828' },
+  { name: 'John Fitzgerald',title: 'Minority Vice Chair · Democrat · District 83',   salutation: 'Representative', email: 'jfitzgerald@house.mi.gov', phone: '(517) 373-0835' },
+  { name: 'Curtis VanderWall', title: 'Member · Republican · District 102',    salutation: 'Representative', email: 'CurtisVanderWall@house.mi.gov',   phone: '(517) 373-1747' },
+  { name: 'Mike McFall',    title: 'Member · Democrat · District 14',           salutation: 'Representative', email: 'mmcfall@house.mi.gov',           phone: '(517) 373-0140' },
+];
+
+let selectedBill = null;
+
+function initials(name) {
+  return name.split(' ').filter((_,i,a)=>i===0||i===a.length-1).map(w=>w[0]).join('');
+}
+
+function v(id){ return document.getElementById(id).value.trim(); }
+
+function renderBills() {
+  const g = document.getElementById('bills-grid');
+  g.innerHTML = '';
+  BILLS.forEach(b => {
+    const d = document.createElement('div');
+    d.className = 'bill-card' + (b.priority ? ' primary-flag' : '') + (selectedBill && selectedBill.id === b.id ? ' selected' : '');
+    d.innerHTML = (b.priority ? '<div class="priority-badge">★ Primary target</div><br>' : '') +
+      `<div class="bill-code">${b.code}</div>` +
+      `<div class="bill-short">${b.short}</div>` +
+      `<div class="bill-desc">${b.desc}</div>` +
+      `<a class="bill-link" href="${b.url}" target="_blank" onclick="event.stopPropagation()">View full bill text ↗</a>`;
+    d.onclick = () => { selectedBill = b; renderBills(); };
+    g.appendChild(d);
+  });
+}
+
+function goStep2() {
+  if (!v('fname')||!v('lname')||!v('addr')||!v('city')||!v('zip')||!v('email')) {
+    document.getElementById('s1err').textContent = 'Please complete all fields before continuing.'; return;
+  }
+  if (!/^\d{5}$/.test(v('zip'))) {
+    document.getElementById('s1err').textContent = 'Please enter a valid 5-digit ZIP code.'; return;
+  }
+  document.getElementById('s1err').textContent = '';
+  if (!selectedBill) selectedBill = BILLS[0];
+  goStep(2); renderBills();
+}
+
+function goStep3() {
+  if (!selectedBill) { document.getElementById('s2err').textContent = 'Please select a bill first.'; return; }
+  document.getElementById('s2err').textContent = '';
+  buildComposer();
+  goStep(3);
+}
+
+function buildComposer() {
+  const fn=v('fname'), ln=v('lname'), city=v('city'), zip=v('zip'), em=v('email'), addr=v('addr');
+  const ch = v('chapter') || 'my MOAA chapter';
+  const firstLast = LEGISLATORS[0].name.split(' ').pop();
+
+  document.getElementById('esubj').value = selectedBill.subject;
+  document.getElementById('ebody').value = selectedBill.body
+    .replace(/\[LAST_NAME\]/g, firstLast)
+    .replace(/\[FULL_NAME\]/g, fn + ' ' + ln)
+    .replace(/\[CITY\]/g, city).replace(/\[ZIP\]/g, zip)
+    .replace(/\[EMAIL\]/g, em).replace(/\[ADDRESS\]/g, addr)
+    .replace(/\[CHAPTER\]/g, ch);
+
+  const ps = document.getElementById('phone-script-text');
+  ps.textContent = `"Hello, my name is ${fn} ${ln}. I'm a constituent of Representative [Name] and a member of the ${ch}, Military Officers Association of America. I'm calling to ask for your support in moving ${selectedBill.code} forward in committee. It's a small, common-sense fix to ensure equal treatment for all uniformed service veterans."`;
+
+  renderLegButtons();
+}
+
+function renderLegButtons() {
+  const fn=v('fname'), ln=v('lname'), city=v('city'), zip=v('zip'), em=v('email'), addr=v('addr');
+  const ch = v('chapter') || 'my MOAA chapter';
+  const subj = document.getElementById('esubj').value;
+  const bodyTpl = document.getElementById('ebody').value;
+  const container = document.getElementById('leg-buttons');
+  container.innerHTML = '';
+
+  LEGISLATORS.forEach(leg => {
+    const lastName = leg.name.split(' ').pop();
+    const body = bodyTpl
+      .replace(/\[LAST_NAME\]/g, lastName)
+      .replace(/\[FULL_NAME\]/g, fn + ' ' + ln)
+      .replace(/\[CITY\]/g, city).replace(/\[ZIP\]/g, zip)
+      .replace(/\[EMAIL\]/g, em).replace(/\[ADDRESS\]/g, addr)
+      .replace(/\[CHAPTER\]/g, ch);
+
+    const mailto = `mailto:${encodeURIComponent(leg.email)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+    const a = document.createElement('a');
+    a.className = 'leg-send-btn';
+    a.href = mailto;
+    a.innerHTML = `
+      <div class="leg-avatar">${initials(leg.name)}</div>
+      <div style="flex:1;min-width:0">
+        <div class="leg-name">Rep. ${leg.name}</div>
+        <div class="leg-meta">${leg.title} · ${leg.phone} · ${leg.email}</div>
+      </div>
+      <svg class="leg-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+    a.onclick = () => {
+      setTimeout(() => {
+        if (!a.querySelector('.opened-badge')) {
+          a.querySelector('.leg-arrow').insertAdjacentHTML('beforebegin', '<span class="opened-badge">Opened ✓</span>');
+        }
+      }, 400);
+    };
+    container.appendChild(a);
+  });
+}
+
+function refreshLinks() { renderLegButtons(); }
+
+function copyMsg() {
+  const subj = document.getElementById('esubj').value;
+  const body = document.getElementById('ebody').value;
+  navigator.clipboard.writeText('Subject: ' + subj + '\n\n' + body);
+  const btn = document.getElementById('copybtn');
+  btn.textContent = 'Copied ✓';
+  setTimeout(() => { btn.textContent = 'Copy message'; }, 2000);
+}
+
+function goStep(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('step'+i).classList.toggle('hidden', i !== n);
+    const dot = document.getElementById('sdot'+i);
+    dot.classList.remove('active','done');
+    if (i < n) dot.classList.add('done');
+    else if (i === n) dot.classList.add('active');
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderBills();
+</script>
+</body>
+</html>
