@@ -344,6 +344,8 @@ textarea { resize: vertical; line-height: 1.65; }
   .steps-track .step-label { display: none; }
   .tab-btn { padding: 8px 16px; font-size: 13px; }
 }
+.chapter-other { display: none; margin-top: 6px; }
+.chapter-other.visible { display: block; }
 </style>
 </head>
 <body>
@@ -377,7 +379,7 @@ textarea { resize: vertical; line-height: 1.65; }
       The header-flag below is the fallback if the logo fails to load.
       Once you confirm your logo path, you can remove the header-flag div entirely.
     -->
-    <img class="mcoc-logo" src="https://www.moaamcoc.com/uploads/1/4/8/4/148483887/published/mcoc-logo.png?1740860645" alt="Michigan Council of Chapters, MOAA"
+    <img class="mcoc-logo" src="mcoc-logo.png" alt="Michigan Council of Chapters, MOAA"
          onerror="this.style.display='none';document.getElementById('header-flag-fallback').style.display='flex';">
     <div class="header-flag" id="header-flag-fallback" style="display:none">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 21V5l9-2 9 2v16H3zM12 3v18M3 9h18M3 15h18"/></svg>
@@ -449,7 +451,20 @@ textarea { resize: vertical; line-height: 1.65; }
           <div class="form-group"><label for="s-city">City</label><input id="s-city" type="text" placeholder="Lansing"/></div>
           <div class="form-group"><label for="s-zip">ZIP code</label><input id="s-zip" type="text" placeholder="48933" maxlength="5"/></div>
           <div class="form-group full"><label for="s-email">Your email address</label><input id="s-email" type="email" placeholder="jane.smith@email.com"/></div>
-          <div class="form-group full"><label for="s-chapter">MOAA Chapter / Unit</label><input id="s-chapter" type="text" placeholder="e.g. Lansing Chapter, MOAA"/></div>
+          <div class="form-group full">
+            <label for="s-chapter">MOAA Chapter</label>
+            <select id="s-chapter-select" onchange="chapterSelectChange('s')">
+              <option value="">— Select your chapter —</option>
+              <option value="SE Michigan Chapter, MOAA">SE Michigan Chapter</option>
+              <option value="Capital Area Chapter, MOAA">Capital Area Chapter</option>
+              <option value="Army &amp; Navy Club of Grand Rapids, MOAA">Army &amp; Navy Club of Grand Rapids</option>
+              <option value="NW Michigan Chapter, MOAA">NW Michigan Chapter</option>
+              <option value="__other__">Other</option>
+            </select>
+            <div class="chapter-other" id="s-chapter-other">
+              <input id="s-chapter" type="text" placeholder="Enter your organization name"/>
+            </div>
+          </div>
         </div>
         <div class="btn-row">
           <button class="btn btn-primary" onclick="stateGoStep2()">Continue to bill selection ›</button>
@@ -536,7 +551,20 @@ textarea { resize: vertical; line-height: 1.65; }
           <div class="form-group"><label for="f-city">City</label><input id="f-city" type="text" placeholder="Lansing"/></div>
           <div class="form-group"><label for="f-zip">ZIP code</label><input id="f-zip" type="text" placeholder="48933" maxlength="5"/></div>
           <div class="form-group full"><label for="f-email">Your email address</label><input id="f-email" type="email" placeholder="jane.smith@email.com"/></div>
-          <div class="form-group full"><label for="f-chapter">MOAA Chapter / Unit</label><input id="f-chapter" type="text" placeholder="e.g. Lansing Chapter, MOAA"/></div>
+          <div class="form-group full">
+            <label for="f-chapter">MOAA Chapter</label>
+            <select id="f-chapter-select" onchange="chapterSelectChange('f')">
+              <option value="">— Select your chapter —</option>
+              <option value="SE Michigan Chapter, MOAA">SE Michigan Chapter</option>
+              <option value="Capital Area Chapter, MOAA">Capital Area Chapter</option>
+              <option value="Army &amp; Navy Club of Grand Rapids, MOAA">Army &amp; Navy Club of Grand Rapids</option>
+              <option value="NW Michigan Chapter, MOAA">NW Michigan Chapter</option>
+              <option value="__other__">Other</option>
+            </select>
+            <div class="chapter-other" id="f-chapter-other">
+              <input id="f-chapter" type="text" placeholder="Enter your organization name"/>
+            </div>
+          </div>
         </div>
         <div class="btn-row">
           <button class="btn btn-primary" onclick="fedGoStep2()">Continue to bill selection ›</button>
@@ -754,7 +782,14 @@ const MI_SENATORS = [
 let selectedStateBill = null;
 let stateDistrictLegislators = [];
 
-function sv(id){ return document.getElementById(id).value.trim(); }
+function sv(id){
+  if(id === 's-chapter'){
+    const sel = document.getElementById('s-chapter-select');
+    if(sel.value === '__other__') return document.getElementById('s-chapter').value.trim();
+    return sel.value.trim();
+  }
+  return document.getElementById(id).value.trim();
+}
 
 function initials(name){
   const parts = name.split(' ');
@@ -784,7 +819,8 @@ function renderStateBills(){
 
 function stateGoStep2(){
   const fn=sv('s-fname'), ln=sv('s-lname'), addr=sv('s-addr'), city=sv('s-city'), zip=sv('s-zip'), em=sv('s-email');
-  if(!fn||!ln||!addr||!city||!zip||!em){ document.getElementById('s-s1err').textContent='Please complete all fields before continuing.'; return; }
+  const ch=sv('s-chapter');
+  if(!fn||!ln||!addr||!city||!zip||!em||!ch){ document.getElementById('s-s1err').textContent='Please complete all fields before continuing.'; return; }
   if(!/^\d{5}$/.test(zip)){ document.getElementById('s-s1err').textContent='Please enter a valid 5-digit ZIP code.'; return; }
   document.getElementById('s-s1err').textContent = '';
   if(!selectedStateBill) selectedStateBill = STATE_BILLS[0];
@@ -931,7 +967,14 @@ function stateGoStep(n){
 
 let selectedFedBill = null;
 
-function fv(id){ return document.getElementById(id).value.trim(); }
+function fv(id){
+  if(id === 'f-chapter'){
+    const sel = document.getElementById('f-chapter-select');
+    if(sel.value === '__other__') return document.getElementById('f-chapter').value.trim();
+    return sel.value.trim();
+  }
+  return document.getElementById(id).value.trim();
+}
 
 function renderFedBills(){
   const g = document.getElementById('fed-bills-grid');
@@ -968,7 +1011,8 @@ function renderFedBills(){
 
 function fedGoStep2(){
   const fn=fv('f-fname'), ln=fv('f-lname'), addr=fv('f-addr'), city=fv('f-city'), zip=fv('f-zip'), em=fv('f-email');
-  if(!fn||!ln||!addr||!city||!zip||!em){ document.getElementById('f-s1err').textContent='Please complete all fields.'; return; }
+  const ch=fv('f-chapter');
+  if(!fn||!ln||!addr||!city||!zip||!em||!ch){ document.getElementById('f-s1err').textContent='Please complete all fields.'; return; }
   if(!/^\d{5}$/.test(zip)){ document.getElementById('f-s1err').textContent='Please enter a valid 5-digit ZIP code.'; return; }
   document.getElementById('f-s1err').textContent = '';
   lacEvent('step_complete', { tab: 'federal', step: 1 });
@@ -1158,6 +1202,35 @@ function updateBadges(){
   const fb = document.getElementById('federal-badge');
   if(fc > 0){ fb.textContent = fc; fb.className = 'tab-badge'; }
   else { fb.textContent = 'Coming Soon'; fb.className = 'tab-badge coming'; }
+}
+
+// Chapter dropdown — show/hide Other input
+function chapterSelectChange(prefix){
+  const sel = document.getElementById(prefix+'-chapter-select');
+  const other = document.getElementById(prefix+'-chapter-other');
+  const isOther = sel.value === '__other__';
+  other.classList.toggle('visible', isOther);
+  if(isOther) document.getElementById(prefix+'-chapter').focus();
+}
+
+// Email help accordion
+function toggleEmailHelp(prefix){
+  const body = document.getElementById(prefix+'-email-help-body');
+  const btn = body.previousElementSibling;
+  const isOpen = body.classList.contains('visible');
+  body.classList.toggle('visible', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', String(!isOpen));
+}
+
+function showEhTab(prefix, provider, el){
+  const providers = ['aol','yahoo','gmail','outlook'];
+  providers.forEach(p => {
+    const panel = document.getElementById(prefix+'-eh-'+p);
+    if(panel) panel.classList.toggle('visible', p === provider);
+  });
+  el.closest('.eh-tabs').querySelectorAll('.eh-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
 }
 
 // Init
