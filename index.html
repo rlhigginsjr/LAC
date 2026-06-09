@@ -6,7 +6,7 @@
 <title>Legislative Action Center — Michigan Council of Chapters, MOAA</title>
 
 <!-- Google tag (gtag.js) — GA4 -->
-<!-- GA4 Analytics -->
+<!-- REPLACE G-J7VGNRJQ98 with your actual GA4 Measurement ID from analytics.google.com -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7VGNRJQ98"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -278,6 +278,54 @@ textarea { resize: vertical; line-height: 1.65; }
   margin-bottom: 8px; width: 100%;
 }
 .leg-send-btn:hover { background: var(--blue-pale); border-color: var(--navy); }
+.leg-choice-card {
+  border: 1.5px solid var(--gray-100);
+  border-radius: var(--radius);
+  background: var(--gray-50);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.leg-choice-card .leg-send-btn {
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
+}
+.leg-choice-card.open .leg-send-btn { background: var(--blue-pale); }
+.leg-choice-panel {
+  display: none;
+  border-top: 1.5px solid var(--gray-100);
+  background: #fff;
+  padding: 12px 16px 14px 66px;
+}
+.leg-choice-card.open .leg-choice-panel { display: block; }
+.leg-choice-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.leg-choice-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.leg-choice-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 11px; border-radius: var(--radius);
+  border: 1.5px solid var(--gray-300);
+  color: var(--navy); background: #fff;
+  font-size: 13px; font-weight: 600;
+  text-decoration: none; cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.leg-choice-link:hover { background: var(--blue-pale); border-color: var(--navy); }
+.leg-choice-link.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.leg-choice-link.primary:hover { background: var(--navy-mid); border-color: var(--navy-mid); }
+.leg-choice-note {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-top: 9px;
+  line-height: 1.5;
+}
 .leg-avatar {
   width: 38px; height: 38px; border-radius: 50%;
   background: var(--navy); color: var(--gold-light);
@@ -341,50 +389,12 @@ textarea { resize: vertical; line-height: 1.65; }
 @media (max-width: 560px) {
   .form-grid { grid-template-columns: 1fr; }
   .bills-grid { grid-template-columns: 1fr; }
+  .leg-choice-panel { padding-left: 16px; }
   .steps-track .step-label { display: none; }
   .tab-btn { padding: 8px 16px; font-size: 13px; }
 }
 .chapter-other { display: none; margin-top: 6px; }
 .chapter-other.visible { display: block; }
-.chapter-other { display: none; margin-top: 6px; }
-.chapter-other.visible { display: block; }
-
-/* Email help accordion */
-.email-help-wrap {
-  margin: 1.25rem 0 0.5rem;
-  border: 1px solid var(--gold);
-  border-radius: 8px;
-  overflow: hidden;
-}
-.email-help-toggle {
-  width: 100%; background: #fffbf0; border: none; cursor: pointer;
-  padding: 0.75rem 1.1rem;
-  display: flex; align-items: center; justify-content: space-between;
-  font-size: 14px; font-weight: 600; color: #7a5c00;
-  text-align: left; gap: 8px;
-}
-.email-help-toggle:hover { background: #fff3cc; }
-.email-help-toggle .eh-arrow { font-size: 11px; transition: transform 0.2s; flex-shrink: 0; }
-.email-help-toggle.open .eh-arrow { transform: rotate(180deg); }
-.email-help-body { display: none; background: #fff; padding: 1rem 1.1rem 1.1rem; border-top: 1px solid #f0d87a; }
-.email-help-body.visible { display: block; }
-.eh-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
-.eh-tab {
-  padding: 5px 14px; font-size: 13px; font-weight: 600; border-radius: 20px;
-  border: 1.5px solid #bbb; background: transparent; cursor: pointer; color: #444; transition: all 0.15s;
-}
-.eh-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
-.eh-panel { display: none; }
-.eh-panel.visible { display: block; }
-.eh-step {
-  background: #f8f8f8; border-radius: 6px; padding: 0.7rem 0.9rem;
-  margin-bottom: 0.6rem; font-size: 14px; line-height: 1.6; color: #333;
-}
-.eh-step strong { color: #111; }
-.eh-step ol { margin: 0.4rem 0 0; padding-left: 1.2rem; }
-.eh-step ol li { margin-bottom: 2px; }
-.eh-step.success { background: #f0faf3; border-left: 3px solid #2e9e5b; }
-.eh-step.fallback { background: #fff8e1; border-left: 3px solid var(--gold); }
 </style>
 </head>
 <body>
@@ -411,7 +421,7 @@ textarea { resize: vertical; line-height: 1.65; }
     <!--
       MCOC Logo — two options:
       Option A (recommended): upload your logo file to the repo and reference it directly.
-        <img class="mcoc-logo" src="mcoc-logo.png" alt="Michigan Council of Chapters, MOAA" onerror="this.style.display='none';document.querySelector('.header-flag').style.display='flex';">
+        <img class="mcoc-logo" src="https://www.moaamcoc.com/uploads/1/4/8/4/148483887/published/mcoc-logo.png?1740860645" alt="Michigan Council of Chapters, MOAA" onerror="this.style.display='none';document.querySelector('.header-flag').style.display='flex';">
       Option B: link to the logo hosted on moaamcoc.com.
         <img class="mcoc-logo" src="https://www.moaamcoc.com/uploads/1/4/8/4/148483887/[LOGO-FILENAME]" alt="Michigan Council of Chapters, MOAA" onerror="this.style.display='none';document.querySelector('.header-flag').style.display='flex';">
 
@@ -495,7 +505,7 @@ textarea { resize: vertical; line-height: 1.65; }
             <select id="s-chapter-select" onchange="chapterSelectChange('s')">
               <option value="">— Select your chapter —</option>
               <option value="SE Michigan Chapter, MOAA">SE Michigan Chapter</option>
-              <option value="Capital Area Chapter, MOAA">Capital Area Chapter</option>
+              <option value="Capitol Area Chapter, MOAA">Capitol Area Chapter</option>
               <option value="Army &amp; Navy Club of Grand Rapids, MOAA">Army &amp; Navy Club of Grand Rapids</option>
               <option value="NW Michigan Chapter, MOAA">NW Michigan Chapter</option>
               <option value="__other__">Other</option>
@@ -533,7 +543,7 @@ textarea { resize: vertical; line-height: 1.65; }
       <div class="card">
         <div class="card-title">Step 3 — Review and send your email</div>
         <div class="notice">
-          Your email client will open with this message pre-filled. Each legislator gets their own button. Edit the message freely before clicking send in your email program.
+          Each legislator gets a button with simple sending choices. Use Gmail, Outlook on the web, Yahoo Mail, copy/paste, or your computer's email app if it is already set up.
         </div>
         <div id="state-lookup-status" class="hidden"></div>
         <div class="form-grid" style="margin-bottom:1.25rem">
@@ -550,47 +560,8 @@ textarea { resize: vertical; line-height: 1.65; }
           <button class="btn" id="s-copybtn" onclick="stateCopyMsg()">Copy message</button>
           <button class="btn" onclick="stateRefreshLinks()">↺ Refresh links</button>
         </div>
-        <div class="footer-note">After editing the subject or body, click <strong>Refresh links</strong> before opening your email client.</div>
+        <div class="footer-note">After editing the subject or body, click <strong>Refresh links</strong> before choosing a send option.</div>
       </div>
-        <!-- Email help accordion -->
-        <div class="email-help-wrap">
-          <button class="email-help-toggle" onclick="toggleEmailHelp('s')" aria-expanded="false">
-            <span>&#9888; Having trouble? &mdash; How to connect your email to the Legislative Action Center</span>
-            <span class="eh-arrow">&#9660;</span>
-          </button>
-          <div class="email-help-body" id="s-email-help-body">
-            <p style="font-size:13px;color:#555;margin:0 0 0.75rem;">When you click a legislator button, your computer needs to know which email program to open. Follow the steps for your provider.</p>
-            <div class="eh-tabs">
-              <button class="eh-tab active" onclick="showEhTab('s','aol',this)">AOL Mail</button>
-              <button class="eh-tab" onclick="showEhTab('s','yahoo',this)">Yahoo Mail</button>
-              <button class="eh-tab" onclick="showEhTab('s','gmail',this)">Gmail</button>
-              <button class="eh-tab" onclick="showEhTab('s','outlook',this)">Outlook</button>
-            </div>
-            <div class="eh-panel visible" id="s-eh-aol">
-              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Microsoft Edge (the blue <strong>e</strong> on your taskbar). Go to <strong>mail.aol.com</strong> and sign in.</div>
-              <div class="eh-step"><strong>Step 2 &mdash;</strong> Look for a bar at the top asking: <em>"Allow mail.aol.com to open mailto links?"</em> &mdash; click <strong>Allow</strong>. Done &mdash; skip to the test.</div>
-              <div class="eh-step"><strong>Step 2b &mdash; If no bar appeared:</strong><ol><li>Look at the right side of the Edge address bar for a small <strong>diamond</strong> or <strong>lock</strong> icon</li><li>Click it &mdash; a small menu appears</li><li>Find <strong>Protocol handlers</strong> or <strong>mailto</strong> and set it to <strong>Allow</strong></li><li>Press F5 to reload the page</li></ol></div>
-              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. An AOL Mail compose window should open with the subject and message already filled in. Review and click <strong>Send</strong>.</div>
-            </div>
-            <div class="eh-panel" id="s-eh-yahoo">
-              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Microsoft Edge. Go to <strong>mail.yahoo.com</strong> and sign in.</div>
-              <div class="eh-step"><strong>Step 2 &mdash;</strong> Look for a bar asking: <em>"Allow mail.yahoo.com to open mailto links?"</em> &mdash; click <strong>Allow</strong>. Done &mdash; skip to the test.</div>
-              <div class="eh-step"><strong>Step 2b &mdash; If no bar appeared:</strong><ol><li>In Yahoo Mail, click the <strong>gear icon</strong> (top right) &rarr; <strong>More Settings</strong></li><li>Click <strong>Mailboxes</strong> on the left, then click your email address</li><li>Next to <strong>Default email client</strong>, click <strong>Set as default</strong></li><li>A browser pop-up will appear &mdash; click <strong>Allow</strong></li></ol></div>
-              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. A Yahoo Mail compose window should open with the message pre-filled. Review and click <strong>Send</strong>.</div>
-            </div>
-            <div class="eh-panel" id="s-eh-gmail">
-              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Google Chrome. Go to <strong>mail.google.com</strong> and sign in.</div>
-              <div class="eh-step"><strong>Step 2 &mdash;</strong> In the Chrome address bar, look for a <strong>two-diamond icon</strong> on the right side. Click it and select <strong>"Allow mail.google.com to open mailto links"</strong>, then click <strong>Done</strong>.</div>
-              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. Gmail should open a compose window with the message pre-filled. Review and click <strong>Send</strong>.</div>
-            </div>
-            <div class="eh-panel" id="s-eh-outlook">
-              <div class="eh-step"><strong>Outlook desktop app &mdash;</strong> If Outlook is installed on your computer, it is already your default email program. Clicking a legislator button will open Outlook automatically. No setup needed.</div>
-              <div class="eh-step"><strong>Outlook on the web (outlook.com) &mdash;</strong><ol><li>Open Edge and go to <strong>outlook.com</strong>, sign in</li><li>Look for the mailto handler bar at the top &mdash; click <strong>Allow</strong></li><li>If no bar appears, click the <strong>lock icon</strong> in the address bar and set mailto to <strong>Allow</strong></li></ol></div>
-              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. Outlook should open with the message pre-filled. Review and click <strong>Send</strong>.</div>
-            </div>
-            <div class="eh-step fallback" style="margin-top:0.75rem;"><strong>Nothing working? Use this workaround &mdash;</strong> Go directly to your email, start a new message, and manually type the legislator's email address shown on the button. Copy the message text from the box above and paste it in.</div>
-          </div>
-        </div>
       <div class="phone-script">
         <div class="phone-script-title">📞 Prefer to call? Use this script</div>
         <p id="state-phone-script">Complete Step 1 to generate your personalized phone script.</p>
@@ -634,7 +605,7 @@ textarea { resize: vertical; line-height: 1.65; }
             <select id="f-chapter-select" onchange="chapterSelectChange('f')">
               <option value="">— Select your chapter —</option>
               <option value="SE Michigan Chapter, MOAA">SE Michigan Chapter</option>
-              <option value="Capital Area Chapter, MOAA">Capital Area Chapter</option>
+              <option value="Capitol Area Chapter, MOAA">Capitol Area Chapter</option>
               <option value="Army &amp; Navy Club of Grand Rapids, MOAA">Army &amp; Navy Club of Grand Rapids</option>
               <option value="NW Michigan Chapter, MOAA">NW Michigan Chapter</option>
               <option value="__other__">Other</option>
@@ -669,7 +640,7 @@ textarea { resize: vertical; line-height: 1.65; }
       <div class="card">
         <div class="card-title">Step 3 — Review and send your email</div>
         <div class="notice">
-          Your email client will open with this message pre-filled. Each legislator gets their own button.
+          Each legislator gets a button with simple sending choices. Use Gmail, Outlook on the web, Yahoo Mail, copy/paste, or your computer's email app if it is already set up.
         </div>
         <div id="fed-lookup-status" class="hidden"></div>
         <div class="form-grid" style="margin-bottom:1.25rem">
@@ -683,47 +654,8 @@ textarea { resize: vertical; line-height: 1.65; }
           <button class="btn" id="f-copybtn" onclick="fedCopyMsg()">Copy message</button>
           <button class="btn" onclick="fedRefreshLinks()">↺ Refresh links</button>
         </div>
-        <div class="footer-note">After editing the subject or body, click <strong>Refresh links</strong> before opening your email client.</div>
+        <div class="footer-note">After editing the subject or body, click <strong>Refresh links</strong> before choosing a send option.</div>
       </div>
-        <!-- Email help accordion -->
-        <div class="email-help-wrap">
-          <button class="email-help-toggle" onclick="toggleEmailHelp('f')" aria-expanded="false">
-            <span>&#9888; Having trouble? &mdash; How to connect your email to the Legislative Action Center</span>
-            <span class="eh-arrow">&#9660;</span>
-          </button>
-          <div class="email-help-body" id="f-email-help-body">
-            <p style="font-size:13px;color:#555;margin:0 0 0.75rem;">When you click a legislator button, your computer needs to know which email program to open. Follow the steps for your provider.</p>
-            <div class="eh-tabs">
-              <button class="eh-tab active" onclick="showEhTab('f','aol',this)">AOL Mail</button>
-              <button class="eh-tab" onclick="showEhTab('f','yahoo',this)">Yahoo Mail</button>
-              <button class="eh-tab" onclick="showEhTab('f','gmail',this)">Gmail</button>
-              <button class="eh-tab" onclick="showEhTab('f','outlook',this)">Outlook</button>
-            </div>
-            <div class="eh-panel visible" id="f-eh-aol">
-              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Microsoft Edge (the blue <strong>e</strong> on your taskbar). Go to <strong>mail.aol.com</strong> and sign in.</div>
-              <div class="eh-step"><strong>Step 2 &mdash;</strong> Look for a bar at the top asking: <em>"Allow mail.aol.com to open mailto links?"</em> &mdash; click <strong>Allow</strong>. Done &mdash; skip to the test.</div>
-              <div class="eh-step"><strong>Step 2b &mdash; If no bar appeared:</strong><ol><li>Look at the right side of the Edge address bar for a small <strong>diamond</strong> or <strong>lock</strong> icon</li><li>Click it &mdash; a small menu appears</li><li>Find <strong>Protocol handlers</strong> or <strong>mailto</strong> and set it to <strong>Allow</strong></li><li>Press F5 to reload the page</li></ol></div>
-              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. An AOL Mail compose window should open with the subject and message already filled in. Review and click <strong>Send</strong>.</div>
-            </div>
-            <div class="eh-panel" id="f-eh-yahoo">
-              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Microsoft Edge. Go to <strong>mail.yahoo.com</strong> and sign in.</div>
-              <div class="eh-step"><strong>Step 2 &mdash;</strong> Look for a bar asking: <em>"Allow mail.yahoo.com to open mailto links?"</em> &mdash; click <strong>Allow</strong>. Done &mdash; skip to the test.</div>
-              <div class="eh-step"><strong>Step 2b &mdash; If no bar appeared:</strong><ol><li>In Yahoo Mail, click the <strong>gear icon</strong> (top right) &rarr; <strong>More Settings</strong></li><li>Click <strong>Mailboxes</strong> on the left, then click your email address</li><li>Next to <strong>Default email client</strong>, click <strong>Set as default</strong></li><li>A browser pop-up will appear &mdash; click <strong>Allow</strong></li></ol></div>
-              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. A Yahoo Mail compose window should open with the message pre-filled. Review and click <strong>Send</strong>.</div>
-            </div>
-            <div class="eh-panel" id="f-eh-gmail">
-              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Google Chrome. Go to <strong>mail.google.com</strong> and sign in.</div>
-              <div class="eh-step"><strong>Step 2 &mdash;</strong> In the Chrome address bar, look for a <strong>two-diamond icon</strong> on the right side. Click it and select <strong>"Allow mail.google.com to open mailto links"</strong>, then click <strong>Done</strong>.</div>
-              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. Gmail should open a compose window with the message pre-filled. Review and click <strong>Send</strong>.</div>
-            </div>
-            <div class="eh-panel" id="f-eh-outlook">
-              <div class="eh-step"><strong>Outlook desktop app &mdash;</strong> If Outlook is installed on your computer, it is already your default email program. Clicking a legislator button will open Outlook automatically. No setup needed.</div>
-              <div class="eh-step"><strong>Outlook on the web (outlook.com) &mdash;</strong><ol><li>Open Edge and go to <strong>outlook.com</strong>, sign in</li><li>Look for the mailto handler bar at the top &mdash; click <strong>Allow</strong></li><li>If no bar appears, click the <strong>lock icon</strong> in the address bar and set mailto to <strong>Allow</strong></li></ol></div>
-              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. Outlook should open with the message pre-filled. Review and click <strong>Send</strong>.</div>
-            </div>
-            <div class="eh-step fallback" style="margin-top:0.75rem;"><strong>Nothing working? Use this workaround &mdash;</strong> Go directly to your email, start a new message, and manually type the legislator's email address shown on the button. Copy the message text from the box above and paste it in.</div>
-          </div>
-        </div>
       <div class="phone-script">
         <div class="phone-script-title">📞 Prefer to call?</div>
         <p id="fed-phone-script">Complete Step 1 to generate your personalized phone script.</p>
@@ -1061,10 +993,8 @@ function renderStateButtons(){
 function stateRefreshLinks(){ renderStateButtons(); }
 
 function stateCopyMsg(){
-  navigator.clipboard.writeText('Subject: '+document.getElementById('s-esubj').value+'\n\n'+document.getElementById('s-ebody').value);
   const btn = document.getElementById('s-copybtn');
-  btn.textContent = 'Copied ✓';
-  setTimeout(()=>{ btn.textContent = 'Copy message'; }, 2000);
+  copyText('Subject: '+document.getElementById('s-esubj').value+'\n\n'+document.getElementById('s-ebody').value, btn, 'Copied ✓');
 }
 
 function stateGoStep(n){
@@ -1234,10 +1164,8 @@ function fedRefreshLinks(){
 }
 
 function fedCopyMsg(){
-  navigator.clipboard.writeText('Subject: '+document.getElementById('f-esubj').value+'\n\n'+document.getElementById('f-ebody').value);
   const btn = document.getElementById('f-copybtn');
-  btn.textContent = 'Copied ✓';
-  setTimeout(()=>{ btn.textContent = 'Copy message'; }, 2000);
+  copyText('Subject: '+document.getElementById('f-esubj').value+'\n\n'+document.getElementById('f-ebody').value, btn, 'Copied ✓');
 }
 
 function fedGoStep(n){
@@ -1267,32 +1195,138 @@ function fillMerge(template, vals){
     .replace(/\[SALUTATION\]/g, vals.SALUTATION||'');
 }
 
-function renderLegButton(container, leg, subj, body, avatarClass){
-  const mailto = leg.email
-    ? `mailto:${encodeURIComponent(leg.email)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`
-    : '#';
-  const a = document.createElement('a');
-  a.className = 'leg-send-btn';
-  a.href = mailto;
-  a.innerHTML = `
-    <div class="leg-avatar ${avatarClass||''}">${initials(leg.name)}</div>
-    <div style="flex:1;min-width:0">
-      <div class="leg-name">${leg.salutation ? leg.salutation+' ' : ''}${leg.name}</div>
-      <div class="leg-meta">${leg.title}${leg.phone?' · '+leg.phone:''}${leg.email?' · '+leg.email:' · Contact form — see their website'}</div>
-    </div>
-    <svg class="leg-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
-  if(!leg.email){
-    a.onclick = e => { e.preventDefault(); alert('No email address on file for this legislator. Visit their official website to use their contact form, or use the Copy button to copy your message.'); };
+function escapeHtml(value){
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function buildEmailLinks(email, subj, body){
+  const to = encodeURIComponent(email);
+  const mailtoTo = to.replace(/%40/g, '@');
+  const subject = encodeURIComponent(subj);
+  const message = encodeURIComponent(body);
+  return {
+    mailto: `mailto:${mailtoTo}?subject=${subject}&body=${message}`,
+    gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${message}`,
+    outlook: `https://outlook.office.com/mail/deeplink/compose?to=${to}&subject=${subject}&body=${message}`,
+    yahoo: `https://compose.mail.yahoo.com/?to=${to}&subject=${subject}&body=${message}`
+  };
+}
+
+function copyText(text, btn, doneLabel){
+  const finish = () => {
+    const original = btn.textContent;
+    btn.textContent = doneLabel || 'Copied';
+    setTimeout(()=>{ btn.textContent = original; }, 2000);
+  };
+
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(finish).catch(()=>fallbackCopyText(text, finish));
   } else {
-    a.onclick = () => {
-      lacEvent('email_sent', { legislator: leg.name, tab: avatarClass === 'federal' ? 'federal' : 'state' });
-      setTimeout(()=>{
-        if(!a.querySelector('.opened-badge'))
-          a.querySelector('.leg-arrow').insertAdjacentHTML('beforebegin','<span class="opened-badge">Opened ✓</span>');
-      }, 400);
+    fallbackCopyText(text, finish);
+  }
+}
+
+function fallbackCopyText(text, done){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  done();
+}
+
+function markLegOpened(card, leg, avatarClass, method){
+  lacEvent('email_choice', {
+    legislator: leg.name,
+    tab: avatarClass === 'federal' ? 'federal' : 'state',
+    method
+  });
+  setTimeout(()=>{
+    if(!card.querySelector('.opened-badge')){
+      const arrow = card.querySelector('.leg-arrow');
+      if(arrow) arrow.insertAdjacentHTML('beforebegin','<span class="opened-badge">Opened ✓</span>');
+    }
+  }, 400);
+}
+
+function renderLegButton(container, leg, subj, body, avatarClass){
+  const card = document.createElement('div');
+  card.className = 'leg-choice-card';
+
+  const header = document.createElement('button');
+  header.type = 'button';
+  header.className = 'leg-send-btn';
+  header.setAttribute('aria-expanded', 'false');
+  header.innerHTML = `
+    <div class="leg-avatar ${escapeHtml(avatarClass||'')}">${escapeHtml(initials(leg.name))}</div>
+    <div style="flex:1;min-width:0">
+      <div class="leg-name">${escapeHtml(leg.salutation ? leg.salutation+' ' : '')}${escapeHtml(leg.name)}</div>
+      <div class="leg-meta">${escapeHtml(leg.title)}${leg.phone?' · '+escapeHtml(leg.phone):''}${leg.email?' · '+escapeHtml(leg.email):' · Contact form — see their website'}</div>
+    </div>
+    <svg class="leg-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>`;
+  header.onclick = () => {
+    const isOpen = card.classList.toggle('open');
+    header.setAttribute('aria-expanded', String(isOpen));
+  };
+
+  const panel = document.createElement('div');
+  panel.className = 'leg-choice-panel';
+
+  if(!leg.email){
+    panel.innerHTML = `
+      <div class="leg-choice-title">No direct email listed</div>
+      <div class="leg-choice-row">
+        <button class="leg-choice-link primary" type="button" data-copy-message>Copy message</button>
+      </div>
+      <div class="leg-choice-note">Use the official contact form or paste this message into any email program.</div>`;
+  } else {
+    const links = buildEmailLinks(leg.email, subj, body);
+    panel.innerHTML = `
+      <div class="leg-choice-title">Choose how to send</div>
+      <div class="leg-choice-row">
+        <a class="leg-choice-link primary" href="${links.gmail}" target="_blank" rel="noopener" data-method="gmail">Gmail</a>
+        <a class="leg-choice-link primary" href="${links.outlook}" target="_blank" rel="noopener" data-method="outlook">Outlook web</a>
+        <a class="leg-choice-link" href="${links.yahoo}" target="_blank" rel="noopener" data-method="yahoo">Yahoo Mail</a>
+        <a class="leg-choice-link" href="${links.mailto}" data-method="email_app">Email app</a>
+        <button class="leg-choice-link" type="button" data-copy-address>Copy address</button>
+        <button class="leg-choice-link" type="button" data-copy-message>Copy message</button>
+      </div>
+      <div class="leg-choice-note">Webmail opens in your browser and avoids Windows default-mail-app problems. Use Email app only if your computer already has one configured.</div>`;
+  }
+
+  panel.querySelectorAll('a[data-method]').forEach(link => {
+    link.onclick = () => markLegOpened(card, leg, avatarClass, link.dataset.method);
+  });
+
+  const copyAddress = panel.querySelector('[data-copy-address]');
+  if(copyAddress){
+    copyAddress.onclick = () => {
+      copyText(leg.email, copyAddress, 'Address copied');
+      lacEvent('email_choice', { legislator: leg.name, tab: avatarClass === 'federal' ? 'federal' : 'state', method: 'copy_address' });
     };
   }
-  container.appendChild(a);
+
+  const copyMessage = panel.querySelector('[data-copy-message]');
+  if(copyMessage){
+    copyMessage.onclick = () => {
+      const text = (leg.email ? 'To: '+leg.email+'\n' : '') + 'Subject: '+subj+'\n\n'+body;
+      copyText(text, copyMessage, 'Message copied');
+      lacEvent('email_choice', { legislator: leg.name, tab: avatarClass === 'federal' ? 'federal' : 'state', method: 'copy_message' });
+    };
+  }
+
+  card.appendChild(header);
+  card.appendChild(panel);
+  container.appendChild(card);
 }
 
 function switchTab(tab){
