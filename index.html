@@ -6,7 +6,7 @@
 <title>Legislative Action Center — Michigan Council of Chapters, MOAA</title>
 
 <!-- Google tag (gtag.js) — GA4 -->
-<!-- REPLACE G-XXXXXXXXXX with your actual GA4 Measurement ID from analytics.google.com -->
+<!-- GA4 Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7VGNRJQ98"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -346,6 +346,45 @@ textarea { resize: vertical; line-height: 1.65; }
 }
 .chapter-other { display: none; margin-top: 6px; }
 .chapter-other.visible { display: block; }
+.chapter-other { display: none; margin-top: 6px; }
+.chapter-other.visible { display: block; }
+
+/* Email help accordion */
+.email-help-wrap {
+  margin: 1.25rem 0 0.5rem;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.email-help-toggle {
+  width: 100%; background: #fffbf0; border: none; cursor: pointer;
+  padding: 0.75rem 1.1rem;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 14px; font-weight: 600; color: #7a5c00;
+  text-align: left; gap: 8px;
+}
+.email-help-toggle:hover { background: #fff3cc; }
+.email-help-toggle .eh-arrow { font-size: 11px; transition: transform 0.2s; flex-shrink: 0; }
+.email-help-toggle.open .eh-arrow { transform: rotate(180deg); }
+.email-help-body { display: none; background: #fff; padding: 1rem 1.1rem 1.1rem; border-top: 1px solid #f0d87a; }
+.email-help-body.visible { display: block; }
+.eh-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+.eh-tab {
+  padding: 5px 14px; font-size: 13px; font-weight: 600; border-radius: 20px;
+  border: 1.5px solid #bbb; background: transparent; cursor: pointer; color: #444; transition: all 0.15s;
+}
+.eh-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.eh-panel { display: none; }
+.eh-panel.visible { display: block; }
+.eh-step {
+  background: #f8f8f8; border-radius: 6px; padding: 0.7rem 0.9rem;
+  margin-bottom: 0.6rem; font-size: 14px; line-height: 1.6; color: #333;
+}
+.eh-step strong { color: #111; }
+.eh-step ol { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+.eh-step ol li { margin-bottom: 2px; }
+.eh-step.success { background: #f0faf3; border-left: 3px solid #2e9e5b; }
+.eh-step.fallback { background: #fff8e1; border-left: 3px solid var(--gold); }
 </style>
 </head>
 <body>
@@ -379,7 +418,7 @@ textarea { resize: vertical; line-height: 1.65; }
       The header-flag below is the fallback if the logo fails to load.
       Once you confirm your logo path, you can remove the header-flag div entirely.
     -->
-    <img class="mcoc-logo" src="mcoc-logo.png" alt="Michigan Council of Chapters, MOAA"
+    <img class="mcoc-logo" src="https://www.moaamcoc.com/uploads/1/4/8/4/148483887/published/mcoc-logo.png?1740860645" alt="Michigan Council of Chapters, MOAA"
          onerror="this.style.display='none';document.getElementById('header-flag-fallback').style.display='flex';">
     <div class="header-flag" id="header-flag-fallback" style="display:none">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 21V5l9-2 9 2v16H3zM12 3v18M3 9h18M3 15h18"/></svg>
@@ -513,6 +552,45 @@ textarea { resize: vertical; line-height: 1.65; }
         </div>
         <div class="footer-note">After editing the subject or body, click <strong>Refresh links</strong> before opening your email client.</div>
       </div>
+        <!-- Email help accordion -->
+        <div class="email-help-wrap">
+          <button class="email-help-toggle" onclick="toggleEmailHelp('s')" aria-expanded="false">
+            <span>&#9888; Having trouble? &mdash; How to connect your email to the Legislative Action Center</span>
+            <span class="eh-arrow">&#9660;</span>
+          </button>
+          <div class="email-help-body" id="s-email-help-body">
+            <p style="font-size:13px;color:#555;margin:0 0 0.75rem;">When you click a legislator button, your computer needs to know which email program to open. Follow the steps for your provider.</p>
+            <div class="eh-tabs">
+              <button class="eh-tab active" onclick="showEhTab('s','aol',this)">AOL Mail</button>
+              <button class="eh-tab" onclick="showEhTab('s','yahoo',this)">Yahoo Mail</button>
+              <button class="eh-tab" onclick="showEhTab('s','gmail',this)">Gmail</button>
+              <button class="eh-tab" onclick="showEhTab('s','outlook',this)">Outlook</button>
+            </div>
+            <div class="eh-panel visible" id="s-eh-aol">
+              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Microsoft Edge (the blue <strong>e</strong> on your taskbar). Go to <strong>mail.aol.com</strong> and sign in.</div>
+              <div class="eh-step"><strong>Step 2 &mdash;</strong> Look for a bar at the top asking: <em>"Allow mail.aol.com to open mailto links?"</em> &mdash; click <strong>Allow</strong>. Done &mdash; skip to the test.</div>
+              <div class="eh-step"><strong>Step 2b &mdash; If no bar appeared:</strong><ol><li>Look at the right side of the Edge address bar for a small <strong>diamond</strong> or <strong>lock</strong> icon</li><li>Click it &mdash; a small menu appears</li><li>Find <strong>Protocol handlers</strong> or <strong>mailto</strong> and set it to <strong>Allow</strong></li><li>Press F5 to reload the page</li></ol></div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. An AOL Mail compose window should open with the subject and message already filled in. Review and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-panel" id="s-eh-yahoo">
+              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Microsoft Edge. Go to <strong>mail.yahoo.com</strong> and sign in.</div>
+              <div class="eh-step"><strong>Step 2 &mdash;</strong> Look for a bar asking: <em>"Allow mail.yahoo.com to open mailto links?"</em> &mdash; click <strong>Allow</strong>. Done &mdash; skip to the test.</div>
+              <div class="eh-step"><strong>Step 2b &mdash; If no bar appeared:</strong><ol><li>In Yahoo Mail, click the <strong>gear icon</strong> (top right) &rarr; <strong>More Settings</strong></li><li>Click <strong>Mailboxes</strong> on the left, then click your email address</li><li>Next to <strong>Default email client</strong>, click <strong>Set as default</strong></li><li>A browser pop-up will appear &mdash; click <strong>Allow</strong></li></ol></div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. A Yahoo Mail compose window should open with the message pre-filled. Review and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-panel" id="s-eh-gmail">
+              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Google Chrome. Go to <strong>mail.google.com</strong> and sign in.</div>
+              <div class="eh-step"><strong>Step 2 &mdash;</strong> In the Chrome address bar, look for a <strong>two-diamond icon</strong> on the right side. Click it and select <strong>"Allow mail.google.com to open mailto links"</strong>, then click <strong>Done</strong>.</div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. Gmail should open a compose window with the message pre-filled. Review and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-panel" id="s-eh-outlook">
+              <div class="eh-step"><strong>Outlook desktop app &mdash;</strong> If Outlook is installed on your computer, it is already your default email program. Clicking a legislator button will open Outlook automatically. No setup needed.</div>
+              <div class="eh-step"><strong>Outlook on the web (outlook.com) &mdash;</strong><ol><li>Open Edge and go to <strong>outlook.com</strong>, sign in</li><li>Look for the mailto handler bar at the top &mdash; click <strong>Allow</strong></li><li>If no bar appears, click the <strong>lock icon</strong> in the address bar and set mailto to <strong>Allow</strong></li></ol></div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. Outlook should open with the message pre-filled. Review and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-step fallback" style="margin-top:0.75rem;"><strong>Nothing working? Use this workaround &mdash;</strong> Go directly to your email, start a new message, and manually type the legislator's email address shown on the button. Copy the message text from the box above and paste it in.</div>
+          </div>
+        </div>
       <div class="phone-script">
         <div class="phone-script-title">📞 Prefer to call? Use this script</div>
         <p id="state-phone-script">Complete Step 1 to generate your personalized phone script.</p>
@@ -607,6 +685,45 @@ textarea { resize: vertical; line-height: 1.65; }
         </div>
         <div class="footer-note">After editing the subject or body, click <strong>Refresh links</strong> before opening your email client.</div>
       </div>
+        <!-- Email help accordion -->
+        <div class="email-help-wrap">
+          <button class="email-help-toggle" onclick="toggleEmailHelp('f')" aria-expanded="false">
+            <span>&#9888; Having trouble? &mdash; How to connect your email to the Legislative Action Center</span>
+            <span class="eh-arrow">&#9660;</span>
+          </button>
+          <div class="email-help-body" id="f-email-help-body">
+            <p style="font-size:13px;color:#555;margin:0 0 0.75rem;">When you click a legislator button, your computer needs to know which email program to open. Follow the steps for your provider.</p>
+            <div class="eh-tabs">
+              <button class="eh-tab active" onclick="showEhTab('f','aol',this)">AOL Mail</button>
+              <button class="eh-tab" onclick="showEhTab('f','yahoo',this)">Yahoo Mail</button>
+              <button class="eh-tab" onclick="showEhTab('f','gmail',this)">Gmail</button>
+              <button class="eh-tab" onclick="showEhTab('f','outlook',this)">Outlook</button>
+            </div>
+            <div class="eh-panel visible" id="f-eh-aol">
+              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Microsoft Edge (the blue <strong>e</strong> on your taskbar). Go to <strong>mail.aol.com</strong> and sign in.</div>
+              <div class="eh-step"><strong>Step 2 &mdash;</strong> Look for a bar at the top asking: <em>"Allow mail.aol.com to open mailto links?"</em> &mdash; click <strong>Allow</strong>. Done &mdash; skip to the test.</div>
+              <div class="eh-step"><strong>Step 2b &mdash; If no bar appeared:</strong><ol><li>Look at the right side of the Edge address bar for a small <strong>diamond</strong> or <strong>lock</strong> icon</li><li>Click it &mdash; a small menu appears</li><li>Find <strong>Protocol handlers</strong> or <strong>mailto</strong> and set it to <strong>Allow</strong></li><li>Press F5 to reload the page</li></ol></div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. An AOL Mail compose window should open with the subject and message already filled in. Review and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-panel" id="f-eh-yahoo">
+              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Microsoft Edge. Go to <strong>mail.yahoo.com</strong> and sign in.</div>
+              <div class="eh-step"><strong>Step 2 &mdash;</strong> Look for a bar asking: <em>"Allow mail.yahoo.com to open mailto links?"</em> &mdash; click <strong>Allow</strong>. Done &mdash; skip to the test.</div>
+              <div class="eh-step"><strong>Step 2b &mdash; If no bar appeared:</strong><ol><li>In Yahoo Mail, click the <strong>gear icon</strong> (top right) &rarr; <strong>More Settings</strong></li><li>Click <strong>Mailboxes</strong> on the left, then click your email address</li><li>Next to <strong>Default email client</strong>, click <strong>Set as default</strong></li><li>A browser pop-up will appear &mdash; click <strong>Allow</strong></li></ol></div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. A Yahoo Mail compose window should open with the message pre-filled. Review and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-panel" id="f-eh-gmail">
+              <div class="eh-step"><strong>Step 1 &mdash;</strong> Open Google Chrome. Go to <strong>mail.google.com</strong> and sign in.</div>
+              <div class="eh-step"><strong>Step 2 &mdash;</strong> In the Chrome address bar, look for a <strong>two-diamond icon</strong> on the right side. Click it and select <strong>"Allow mail.google.com to open mailto links"</strong>, then click <strong>Done</strong>.</div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. Gmail should open a compose window with the message pre-filled. Review and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-panel" id="f-eh-outlook">
+              <div class="eh-step"><strong>Outlook desktop app &mdash;</strong> If Outlook is installed on your computer, it is already your default email program. Clicking a legislator button will open Outlook automatically. No setup needed.</div>
+              <div class="eh-step"><strong>Outlook on the web (outlook.com) &mdash;</strong><ol><li>Open Edge and go to <strong>outlook.com</strong>, sign in</li><li>Look for the mailto handler bar at the top &mdash; click <strong>Allow</strong></li><li>If no bar appears, click the <strong>lock icon</strong> in the address bar and set mailto to <strong>Allow</strong></li></ol></div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Return to the LAC and click any legislator button. Outlook should open with the message pre-filled. Review and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-step fallback" style="margin-top:0.75rem;"><strong>Nothing working? Use this workaround &mdash;</strong> Go directly to your email, start a new message, and manually type the legislator's email address shown on the button. Copy the message text from the box above and paste it in.</div>
+          </div>
+        </div>
       <div class="phone-script">
         <div class="phone-script-title">📞 Prefer to call?</div>
         <p id="fed-phone-script">Complete Step 1 to generate your personalized phone script.</p>
