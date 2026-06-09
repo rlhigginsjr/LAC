@@ -6,13 +6,13 @@
 <title>Legislative Action Center — Michigan Council of Chapters, MOAA</title>
 
 <!-- Google tag (gtag.js) — GA4 -->
-<!-- REPLACE G-XXXXXXXXXX with your actual GA4 Measurement ID from analytics.google.com -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- GA4 Analytics — Measurement ID: G-J7VGNRJQ98 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J7VGNRJQ98"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  gtag('config', 'G-J7VGNRJQ98');
 
   // LAC custom event helper
   function lacEvent(event_name, params){
@@ -292,6 +292,11 @@ textarea { resize: vertical; line-height: 1.65; }
   text-align: left;
 }
 .leg-choice-card.open .leg-send-btn { background: var(--blue-pale); }
+.leg-send-label {
+  font-size: 12px; font-weight: 700; color: var(--navy);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  white-space: nowrap; flex-shrink: 0;
+}
 .leg-choice-panel {
   display: none;
   border-top: 1.5px solid var(--gray-100);
@@ -395,6 +400,30 @@ textarea { resize: vertical; line-height: 1.65; }
 }
 .chapter-other { display: none; margin-top: 6px; }
 .chapter-other.visible { display: block; }
+
+/* Email help accordion */
+.email-help-wrap { margin: 1.25rem 0 0.5rem; border: 1px solid var(--gold); border-radius: 8px; overflow: hidden; }
+.email-help-toggle {
+  width: 100%; background: #fffbf0; border: none; cursor: pointer;
+  padding: 0.75rem 1.1rem; display: flex; align-items: center; justify-content: space-between;
+  font-size: 14px; font-weight: 600; color: #7a5c00; text-align: left; gap: 8px;
+}
+.email-help-toggle:hover { background: #fff3cc; }
+.email-help-toggle .eh-arrow { font-size: 11px; transition: transform 0.2s; flex-shrink: 0; }
+.email-help-toggle.open .eh-arrow { transform: rotate(180deg); }
+.email-help-body { display: none; background: #fff; padding: 1rem 1.1rem 1.1rem; border-top: 1px solid #f0d87a; }
+.email-help-body.visible { display: block; }
+.eh-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+.eh-tab { padding: 5px 14px; font-size: 13px; font-weight: 600; border-radius: 20px; border: 1.5px solid #bbb; background: transparent; cursor: pointer; color: #444; transition: all 0.15s; }
+.eh-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.eh-panel { display: none; }
+.eh-panel.visible { display: block; }
+.eh-step { background: #f8f8f8; border-radius: 6px; padding: 0.7rem 0.9rem; margin-bottom: 0.6rem; font-size: 14px; line-height: 1.6; color: #333; }
+.eh-step strong { color: #111; }
+.eh-step ol { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+.eh-step ol li { margin-bottom: 2px; }
+.eh-step.success { background: #f0faf3; border-left: 3px solid #2e9e5b; }
+.eh-step.fallback { background: #fff8e1; border-left: 3px solid var(--gold); }
 </style>
 </head>
 <body>
@@ -421,14 +450,14 @@ textarea { resize: vertical; line-height: 1.65; }
     <!--
       MCOC Logo — two options:
       Option A (recommended): upload your logo file to the repo and reference it directly.
-        <img class="mcoc-logo" src="mcoc-logo.png" alt="Michigan Council of Chapters, MOAA" onerror="this.style.display='none';document.querySelector('.header-flag').style.display='flex';">
+        <img class="mcoc-logo" src="https://www.moaamcoc.com/uploads/1/4/8/4/148483887/published/mcoc-logo.png?1740860645" alt="Michigan Council of Chapters, MOAA" onerror="this.style.display='none';document.querySelector('.header-flag').style.display='flex';">
       Option B: link to the logo hosted on moaamcoc.com.
         <img class="mcoc-logo" src="https://www.moaamcoc.com/uploads/1/4/8/4/148483887/[LOGO-FILENAME]" alt="Michigan Council of Chapters, MOAA" onerror="this.style.display='none';document.querySelector('.header-flag').style.display='flex';">
 
       The header-flag below is the fallback if the logo fails to load.
       Once you confirm your logo path, you can remove the header-flag div entirely.
     -->
-    <img class="mcoc-logo" src="mcoc-logo.png" alt="Michigan Council of Chapters, MOAA"
+    <img class="mcoc-logo" src="https://www.moaamcoc.com/uploads/1/4/8/4/148483887/published/mcoc-logo.png?1740860645" alt="Michigan Council of Chapters, MOAA"
          onerror="this.style.display='none';document.getElementById('header-flag-fallback').style.display='flex';">
     <div class="header-flag" id="header-flag-fallback" style="display:none">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 21V5l9-2 9 2v16H3zM12 3v18M3 9h18M3 15h18"/></svg>
@@ -505,7 +534,7 @@ textarea { resize: vertical; line-height: 1.65; }
             <select id="s-chapter-select" onchange="chapterSelectChange('s')">
               <option value="">— Select your chapter —</option>
               <option value="SE Michigan Chapter, MOAA">SE Michigan Chapter</option>
-              <option value="Capital Area Chapter, MOAA">Capital Area Chapter</option>
+              <option value="Capitol Area Chapter, MOAA">Capitol Area Chapter</option>
               <option value="Army &amp; Navy Club of Grand Rapids, MOAA">Army &amp; Navy Club of Grand Rapids</option>
               <option value="NW Michigan Chapter, MOAA">NW Michigan Chapter</option>
               <option value="__other__">Other</option>
@@ -562,6 +591,43 @@ textarea { resize: vertical; line-height: 1.65; }
         </div>
         <div class="footer-note">After editing the subject or body, click <strong>Refresh links</strong> before sending.</div>
       </div>
+
+        <!-- Email help accordion -->
+        <div class="email-help-wrap">
+          <button class="email-help-toggle" onclick="toggleEmailHelp('s')" aria-expanded="false">
+            <span>&#9888; Having trouble? &mdash; How to connect your email to the Legislative Action Center</span>
+            <span class="eh-arrow">&#9660;</span>
+          </button>
+          <div class="email-help-body" id="s-email-help-body">
+            <p style="font-size:13px;color:#555;margin:0 0 0.75rem;">Click the legislator button first &mdash; it will try to open your email automatically. If nothing opens, use one of the options below.</p>
+            <div class="eh-tabs">
+              <button class="eh-tab active" onclick="showEhTab('s','aol',this)">AOL Mail</button>
+              <button class="eh-tab" onclick="showEhTab('s','yahoo',this)">Yahoo Mail</button>
+              <button class="eh-tab" onclick="showEhTab('s','gmail',this)">Gmail</button>
+              <button class="eh-tab" onclick="showEhTab('s','outlook',this)">Outlook</button>
+            </div>
+            <div class="eh-panel visible" id="s-eh-aol">
+              <div class="eh-step"><strong>Easiest option &mdash;</strong> After clicking the legislator button, if AOL didn't open, click <strong>Copy message</strong>, go to <strong>mail.aol.com</strong>, start a new email, paste your message, and type the legislator's address in the To field.</div>
+              <div class="eh-step"><strong>Set up automatic opening &mdash;</strong> Go to <strong>mail.aol.com</strong> in Edge and sign in. Look for a bar asking <em>"Allow mail.aol.com to open mailto links?"</em> and click <strong>Allow</strong>.</div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Click a legislator button again. AOL Mail should open with the message pre-filled.</div>
+            </div>
+            <div class="eh-panel" id="s-eh-yahoo">
+              <div class="eh-step"><strong>Easiest option &mdash;</strong> Click the legislator button, then click <strong>Yahoo Mail</strong> in the panel that opens. Yahoo will open in your browser with the message pre-filled.</div>
+              <div class="eh-step"><strong>Set up automatic opening &mdash;</strong> Go to <strong>mail.yahoo.com</strong> in Edge, sign in, and click <strong>Allow</strong> when asked to open mailto links.</div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Click a legislator button. Yahoo Mail should open with the message pre-filled.</div>
+            </div>
+            <div class="eh-panel" id="s-eh-gmail">
+              <div class="eh-step"><strong>No setup needed &mdash;</strong> Click the legislator button, then click <strong>Gmail</strong> in the panel that opens. Gmail opens in your browser with the message pre-filled.</div>
+              <div class="eh-step success"><strong>That is it &mdash;</strong> Review the message and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-panel" id="s-eh-outlook">
+              <div class="eh-step"><strong>Outlook desktop &mdash;</strong> Clicking the legislator button should open Outlook automatically if it is installed. If not, click <strong>Outlook web</strong> in the panel instead.</div>
+              <div class="eh-step"><strong>Outlook web &mdash;</strong> Click the legislator button, then click <strong>Outlook web</strong>. Opens in your browser with the message pre-filled. No setup needed.</div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Click a legislator button and choose Outlook web. Review and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-step fallback" style="margin-top:0.75rem;"><strong>Still stuck? &mdash;</strong> Click <strong>Copy address</strong> next to the legislator, open your email manually, start a new message, paste the address, then click <strong>Copy message</strong> and paste the body in.</div>
+          </div>
+        </div>
       <div class="phone-script">
         <div class="phone-script-title">📞 Prefer to call? Use this script</div>
         <p id="state-phone-script">Complete Step 1 to generate your personalized phone script.</p>
@@ -605,7 +671,7 @@ textarea { resize: vertical; line-height: 1.65; }
             <select id="f-chapter-select" onchange="chapterSelectChange('f')">
               <option value="">— Select your chapter —</option>
               <option value="SE Michigan Chapter, MOAA">SE Michigan Chapter</option>
-              <option value="Capital Area Chapter, MOAA">Capital Area Chapter</option>
+              <option value="Capitol Area Chapter, MOAA">Capitol Area Chapter</option>
               <option value="Army &amp; Navy Club of Grand Rapids, MOAA">Army &amp; Navy Club of Grand Rapids</option>
               <option value="NW Michigan Chapter, MOAA">NW Michigan Chapter</option>
               <option value="__other__">Other</option>
@@ -656,6 +722,43 @@ textarea { resize: vertical; line-height: 1.65; }
         </div>
         <div class="footer-note">After editing the subject or body, click <strong>Refresh links</strong> before sending.</div>
       </div>
+
+        <!-- Email help accordion -->
+        <div class="email-help-wrap">
+          <button class="email-help-toggle" onclick="toggleEmailHelp('f')" aria-expanded="false">
+            <span>&#9888; Having trouble? &mdash; How to connect your email to the Legislative Action Center</span>
+            <span class="eh-arrow">&#9660;</span>
+          </button>
+          <div class="email-help-body" id="f-email-help-body">
+            <p style="font-size:13px;color:#555;margin:0 0 0.75rem;">Click the legislator button first &mdash; it will try to open your email automatically. If nothing opens, use one of the options below.</p>
+            <div class="eh-tabs">
+              <button class="eh-tab active" onclick="showEhTab('f','aol',this)">AOL Mail</button>
+              <button class="eh-tab" onclick="showEhTab('f','yahoo',this)">Yahoo Mail</button>
+              <button class="eh-tab" onclick="showEhTab('f','gmail',this)">Gmail</button>
+              <button class="eh-tab" onclick="showEhTab('f','outlook',this)">Outlook</button>
+            </div>
+            <div class="eh-panel visible" id="f-eh-aol">
+              <div class="eh-step"><strong>Easiest option &mdash;</strong> After clicking the legislator button, if AOL didn't open, click <strong>Copy message</strong>, go to <strong>mail.aol.com</strong>, start a new email, paste your message, and type the legislator's address in the To field.</div>
+              <div class="eh-step"><strong>Set up automatic opening &mdash;</strong> Go to <strong>mail.aol.com</strong> in Edge and sign in. Look for a bar asking <em>"Allow mail.aol.com to open mailto links?"</em> and click <strong>Allow</strong>.</div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Click a legislator button again. AOL Mail should open with the message pre-filled.</div>
+            </div>
+            <div class="eh-panel" id="f-eh-yahoo">
+              <div class="eh-step"><strong>Easiest option &mdash;</strong> Click the legislator button, then click <strong>Yahoo Mail</strong> in the panel that opens. Yahoo will open in your browser with the message pre-filled.</div>
+              <div class="eh-step"><strong>Set up automatic opening &mdash;</strong> Go to <strong>mail.yahoo.com</strong> in Edge, sign in, and click <strong>Allow</strong> when asked to open mailto links.</div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Click a legislator button. Yahoo Mail should open with the message pre-filled.</div>
+            </div>
+            <div class="eh-panel" id="f-eh-gmail">
+              <div class="eh-step"><strong>No setup needed &mdash;</strong> Click the legislator button, then click <strong>Gmail</strong> in the panel that opens. Gmail opens in your browser with the message pre-filled.</div>
+              <div class="eh-step success"><strong>That is it &mdash;</strong> Review the message and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-panel" id="f-eh-outlook">
+              <div class="eh-step"><strong>Outlook desktop &mdash;</strong> Clicking the legislator button should open Outlook automatically if it is installed. If not, click <strong>Outlook web</strong> in the panel instead.</div>
+              <div class="eh-step"><strong>Outlook web &mdash;</strong> Click the legislator button, then click <strong>Outlook web</strong>. Opens in your browser with the message pre-filled. No setup needed.</div>
+              <div class="eh-step success"><strong>Test it &mdash;</strong> Click a legislator button and choose Outlook web. Review and click <strong>Send</strong>.</div>
+            </div>
+            <div class="eh-step fallback" style="margin-top:0.75rem;"><strong>Still stuck? &mdash;</strong> Click <strong>Copy address</strong> next to the legislator, open your email manually, start a new message, paste the address, then click <strong>Copy message</strong> and paste the body in.</div>
+          </div>
+        </div>
       <div class="phone-script">
         <div class="phone-script-title">📞 Prefer to call?</div>
         <p id="fed-phone-script">Complete Step 1 to generate your personalized phone script.</p>
